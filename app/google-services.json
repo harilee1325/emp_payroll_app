@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1056470533484",
+    "firebase_url": "https://emppay-ddea4.firebaseio.com",
+    "project_id": "emppay-ddea4",
+    "storage_bucket": "emppay-ddea4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056470533484:android:76ba8cebc055cca85c5f49",
+        "android_client_info": {
+          "package_name": "com.harilee.employeeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056470533484-34184krba5oqsg56m9c682ta0cie20oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz-xc4fqcdDvUW3h0KeaswXGNkzYJ0tpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056470533484-34184krba5oqsg56m9c682ta0cie20oo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
