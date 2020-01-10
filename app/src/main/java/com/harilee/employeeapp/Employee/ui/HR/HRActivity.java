@@ -1,4 +1,4 @@
-package com.harilee.employeeapp.ui.HR;
+package com.harilee.employeeapp.Employee.ui.HR;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+import com.harilee.employeeapp.Config;
+import com.harilee.employeeapp.Employee.EmployeeModel;
 import com.harilee.employeeapp.R;
+import com.harilee.employeeapp.Utility;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +44,10 @@ public class HRActivity extends Fragment {
     TextView accountNum;
     @BindView(R.id.request_exit_form)
     Button requestExitForm;
+    @BindView(R.id.joining_date)
+    TextView joiningDate;
+    @BindView(R.id.dob)
+    TextView dob;
     private View view;
 
     @Nullable
@@ -47,7 +55,28 @@ public class HRActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_hr, container, false);
         ButterKnife.bind(this, view);
+        setView();
         return view;
+    }
+
+    private void setView() {
+
+        String emp = Utility.getUtilityInstance().getPreference(getContext(), Config.EMP_DATA);
+        Gson gson1 = new Gson();
+        EmployeeModel model1 = gson1.fromJson(emp, EmployeeModel.class);
+        name.setText("Employee Name : " + model1.getfName() + " " + model1.getlName());
+        fathersName.setText("Father's Name : " + model1.getFatherName());
+        designation.setText("Designation : " + model1.getDesgination());
+        bankName.setText("Bank Name : " + model1.getBankName());
+        accountNum.setText("Account Number : " + model1.getAccNumber());
+        add1.setText("Address : " + model1.getAddress());
+        city.setText("City : " + model1.getCity());
+        state.setText("State : " + model1.getState());
+        pincode.setText("Pincode : " + model1.getPincode());
+        joiningDate.setText("Joining Date : "+model1.getDoj());
+        dob.setText("DOB : "+model1.getDob());
+
+
     }
 
 

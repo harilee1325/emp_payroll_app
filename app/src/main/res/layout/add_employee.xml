@@ -48,6 +48,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:text="Employee ID"
+            android:textColor="@color/theme_black"
+            android:textSize="20sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter ID"
+            android:maxLines="1"
+            android:id="@+id/emp_id"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="DOB"
             android:textColor="@color/theme_black"
             android:textSize="20sp" />

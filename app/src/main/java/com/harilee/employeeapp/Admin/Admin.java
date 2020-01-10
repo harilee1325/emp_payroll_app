@@ -1,4 +1,4 @@
-package com.harilee.employeeapp;
+package com.harilee.employeeapp.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.harilee.employeeapp.Home;
+import com.harilee.employeeapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,5 +42,11 @@ public class Admin extends AppCompatActivity {
             case R.id.exit_list:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Admin.this, Home.class));
     }
 }

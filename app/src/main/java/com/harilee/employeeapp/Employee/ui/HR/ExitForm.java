@@ -1,4 +1,4 @@
-package com.harilee.employeeapp.ui.HR;
+package com.harilee.employeeapp.Employee.ui.HR;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

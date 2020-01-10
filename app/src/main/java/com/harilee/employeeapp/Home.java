@@ -1,6 +1,7 @@
 package com.harilee.employeeapp;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.harilee.employeeapp.Admin.Admin;
+import com.harilee.employeeapp.Employee.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,14 +63,38 @@ public class Home extends AppCompatActivity {
                 EditText loginId2 = dialog2.findViewById(R.id.login_id);
                 dialog2.show();
                 login2.setOnClickListener(v -> {
-                    if (loginId2.getText().toString().trim().equalsIgnoreCase("123")) {
-                        dialog2.cancel();
-                        startActivity(new Intent(Home.this, MainActivity.class));
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_SHORT).show();
-                    }
+                    verifyEmployee(loginId2.getText().toString().trim());
+                    dialog2.cancel();
                 });
                 break;
         }
     }
+
+    private void verifyEmployee(String trim) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ProgressDialog dialog = ProgressDialog.show(Home.this, "",
+                "Authenticating employee. Please wait...", true);
+        db.collection("employees")
+                .whereEqualTo("emp_id", trim)
+                .get()
+                .addOnCompleteListener(task -> {
+
+                    if (task.isSuccessful()) {
+                        if (task.getResult().size() > 0) {
+                            dialog.cancel();
+                            Utility.getUtilityInstance().setPreference(this, Config.E_ID, trim);
+                            Toast.makeText(getApplicationContext(), "Logged in successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Home.this, MainActivity.class));
+                        } else {
+                            dialog.cancel();
+                            Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        dialog.cancel();
+                        Toast.makeText(getApplicationContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
 }

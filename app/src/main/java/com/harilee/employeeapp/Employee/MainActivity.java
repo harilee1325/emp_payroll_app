@@ -1,21 +1,17 @@
-package com.harilee.employeeapp;
+package com.harilee.employeeapp.Employee;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.harilee.employeeapp.ui.HR.HRActivity;
-import com.harilee.employeeapp.ui.Settings.SettingsFragment;
-import com.harilee.employeeapp.ui.Vacation.RequestFragment;
+import com.harilee.employeeapp.Employee.ui.HR.HRActivity;
+import com.harilee.employeeapp.Employee.ui.Settings.SettingsFragment;
+import com.harilee.employeeapp.Employee.ui.Vacation.RequestFragment;
+import com.harilee.employeeapp.R;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -33,8 +29,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);*/
         navView.setOnNavigationItemSelectedListener(this);
-        loadFragment(new RequestFragment());
+        loadFragmentStart(new RequestFragment());
 
+
+    }
+
+    public boolean loadFragmentStart(RequestFragment requestFragment) {
+        if (requestFragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.nav_host_fragment, requestFragment)
+                    .commit();
+            return true;
+        }
+        return false;
 
     }
 
